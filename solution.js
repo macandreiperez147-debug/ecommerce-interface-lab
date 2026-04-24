@@ -10,3 +10,14 @@ function safeDivide(a, b) {
         console.log("Operation attempted");
     }
 }
+
+function generateIDs(count) {
+    let result = [];
+
+    for (let i = 0; i < count; i++) {
+        if (i === 5) continue;
+        result.push(`ID-${i}`);
+    }
+
+    return result;
+}
