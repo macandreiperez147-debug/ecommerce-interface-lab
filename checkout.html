@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1 class="logo">Power Mac</h1>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="landingpage.html">Home</a></li>
+      <li><a href="electronicsproducts.html">Products</a></li>
+      <li><a href="cart.html">Cart</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="checkout-container">
+
+  <!-- CART SECTION -->
+  <section class="cart-section">
+    <h2>Your Cart</h2>
+    <ul class="cart-container"></ul>
+  </section>
+
+  <!-- CHECKOUT FORM -->
+  <form class="checkout-form">
+    <section>
+      <h2>Shipping Address</h2>
+      <fieldset>
+        <legend>Shipping Information</legend>
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="street">Street</label>
+        <input type="text" id="street" name="street" required>
+
+        <label for="zip">Zip Code</label>
+        <input type="text" id="zip" name="zip" required pattern="\d{5}" title="Five digit zip code">
+      </fieldset>
+
+      <h2>Payment</h2>
+      <label>
+        <input type="radio" name="payment" value="credit" required> Credit Card
+      </label>
+      <label>
+        <input type="radio" name="payment" value="paypal"> PayPal
+      </label>
+
+      <br><br>
+      <button type="submit" class="btn-submit">Place Order</button>
+    </section>
+  </form>
+
+  <!-- ORDER SUMMARY -->
+  <aside>
+    <h2>Order Summary</h2>
+    <p>Subtotal: <span id="summary-subtotal">$0</span></p>
+    <p>Shipping: <span id="summary-shipping">$10</span></p>
+    <p>Total: <span id="summary-total">$10</span></p>
+  </aside>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

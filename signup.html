@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Signup</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1 class="logo">Power Mac</h1>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="error">Home</a></li>
+      <li><a href="error">Products</a></li>
+      <li><a href="error">Cart</a></li>
+      <li><a href="error">Account</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+<div class="container">
+
+  <div class="logo">
+    <img src="powermac logo.jpg" alt="Store Logo">
+  </div>
+
+  <!-- LOGIN FORM -->
+  <div id="loginForm">
+    <h2>Login</h2>
+
+    <input type="text" id="loginUsername" placeholder="Username" required>
+    <input type="password" id="loginPassword" placeholder="Password" required>
+
+    <button onclick="login()">Login</button>
+
+    <p>Don't have an account? <a href="#" onclick="showSignup()">Sign Up</a></p>
+    <p id="loginMessage" class="message"></p>
+  </div>
+
+  <!-- SIGNUP FORM -->
+  <div id="signupForm" class="hidden">
+
+    <h2>Create Account</h2>
+
+    <input type="text" id="signupUsername" placeholder="Username" required>
+    <input type="password" id="signupPassword" placeholder="Password" required>
+
+    <button onclick="signup()">Sign Up</button>
+
+    <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+    <p id="signupMessage" class="message"></p>
+
+  </div>
+
+</div>
+
+</main>
+
+<script>
+
+function showSignup() {
+  document.getElementById("loginForm").classList.add("hidden");
+  document.getElementById("signupForm").classList.remove("hidden");
+}
+
+function showLogin() {
+  document.getElementById("signupForm").classList.add("hidden");
+  document.getElementById("loginForm").classList.remove("hidden");
+}
+
+function signup() {
+
+  const username = document.getElementById("signupUsername").value.trim();
+  const password = document.getElementById("signupPassword").value.trim();
+  const message = document.getElementById("signupMessage");
+
+  if (username === "" || password === "") {
+    message.textContent = "Please fill in all fields.";
+    message.className = "error";
+    return;
+  }
+
+  if (localStorage.getItem(username)) {
+    message.textContent = "Username already exists!";
+    message.className = "error";
+    return;
+  }
+
+  localStorage.setItem(username, password);
+
+  message.textContent = "Account created successfully!";
+  message.className = "message";
+
+  setTimeout(showLogin, 1500);
+}
+
+function login() {
+
+  const username = document.getElementById("loginUsername").value.trim();
+  const password = document.getElementById("loginPassword").value.trim();
+  const message = document.getElementById("loginMessage");
+
+  const storedPassword = localStorage.getItem(username);
+
+  if (!storedPassword) {
+    message.textContent = "User not found!";
+    message.className = "error";
+    return;
+  }
+
+  if (storedPassword !== password) {
+    message.textContent = "Incorrect password!";
+    message.className = "error";
+    return;
+  }
+
+  message.textContent = "Login successful! Redirecting...";
+  message.className = "message";
+
+  setTimeout(() => {
+    alert("Welcome, " + username + "!");
+    window.location.href = "account.html";
+  }, 1000);
+}
+
+</script>
+<script src="script.js"></script>
+</body>
+</html>
